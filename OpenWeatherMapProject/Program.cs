@@ -21,12 +21,12 @@ namespace OpenWeatherMapProject
             string apiKey = File.ReadAllText("appsetting.release.txt");
 #endif
             string fullApiLink = $"Https://api.openweathermap.org/data/2.5/weather?zip={zipCode}" + apiKey;
-            string ApiResponse = webClient.DownloadString(fullApiLink);
-            JObject jo = JObject.Parse(ApiResponse);
+            string apiResponse = webClient.DownloadString(fullApiLink);
+            JObject jo = JObject.Parse(apiResponse);
             double tempMath = double.Parse(jo.GetValue("main")["temp"].ToString());
-            double FahrenheitTemp = tempMath * 9 / 5 - 459.67;
-            FahrenheitTemp = Math.Round(FahrenheitTemp, 1);
-            Console.WriteLine($"The temperature is currently {FahrenheitTemp} degrees fahrenheit.");
+            double fahrenheitTemp = tempMath * 9 / 5 - 459.67;
+            fahrenheitTemp = Math.Round(fahrenheitTemp, 1);
+            Console.WriteLine($"The temperature is currently {fahrenheitTemp} degrees fahrenheit.");
         }
     }
 }
